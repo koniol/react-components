@@ -4,7 +4,7 @@ var MovieTitle = React.createClass({
     },
 
     render: function () {
-        return React.createElement('h1', {}, this.props.movietitle.title);
+        return (React.createElement('h1', {}, this.props.movietitle.title));
     }
 
 });
@@ -28,63 +28,38 @@ var Movie = React.createClass({
         movie: React.PropTypes.object.isRequired,
     },
 
-    render: function () {
-        return React.createElement('div', {id: this.props.movie.id, className: 'film-box'});
+    render: function(){
+        return (React.createElement('li',{},
+                    React.createElement('img', {id: this.props.movie.id , 
+                                       className: 'film-box',
+                                       src: this.props.movie.src})
+        ));
     }
 
 });
 
 
-var movie = {
-	id: 1,
-	name:'asdasd'
-}
+var movies =
+    {
+        id: 1,
+        name:'asdasd',
+        src: "./img/cube.jpeg",
+   };
 
 var movietitle = {
-	title: 'First film'
+    title: 'First film'
 }
 
 var movieDesc = {
-	dscrpt: 'Bla bla bla'
+    dscrpt: 'Bla bla bla'
 }
 
 
-var element = React.createElement(Movie, {movie:movie},
-				React.createElement(MovieTitle, {movietitle:movietitle}, 'Title'),
-				React.createElement(MovieDescription, {movieDesc:movieDesc}, 'Title')
-	);
+var element = React.createElement('div', {},
+                React.createElement(MovieTitle,{movietitle:movietitle}),
+                React.createElement(Movie, {movie:movies}),
+                React.createElement(MovieDescription, {movieDesc:movieDesc})
+              );
 
 
 ReactDOM.render(element, document.getElementById('react-app'));
-
-// var Movie = React.createClass({
-//     propTypes: {
-//         data: React.PropTypes.object.isRequired,
-//     },
-
-//     render: function () {
-//         return React.createElement('div', {className: 'film'}, 
-//                     React.createElement('h1', {}, 'Filmy'),
-//                     React.createElement('img', {
-//                     	src: this.props.data.source, 
-//                     	alt: this.props.data.alt
-//                     })
-//                 );
-//     }
-
-// });
-
-
-// var data1 = 
-//     {
-//         header: 'Film',
-//         source: './img/resident.jpeg',
-//         alt: 'Bla bla bla',
-//     };
-
-
-// var element = React.createElement(Movie, {key: 1, className: 'd', data: data1});
-
-
-
-// ReactDOM.render(element, document.getElementById('react-app'));
