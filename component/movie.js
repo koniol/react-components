@@ -22,7 +22,6 @@ var MovieDescription = React.createClass({
 });
 
 
-
 var Movie = React.createClass({
     propTypes: {
         movie: React.PropTypes.object.isRequired,
@@ -30,9 +29,12 @@ var Movie = React.createClass({
 
     render: function(){
         return (React.createElement('li',{},
+                    React.createElement(MovieTitle,{movietitle: this.props.movie}),
                     React.createElement('img', {id: this.props.movie.id , 
                                        className: 'film-box',
-                                       src: this.props.movie.src})
+                                       src: this.props.movie.src}),
+                    
+                    React.createElement(MovieDescription,{movieDesc: this.props.movie})
         ));
     }
 
@@ -44,6 +46,8 @@ var movies =
         id: 1,
         name:'asdasd',
         src: "./img/cube.jpeg",
+        title: "BBOBOOB",
+        dscrpt: "Lorem ipsun dotor bla bla bla",
    };
 
 var movietitle = {
@@ -55,11 +59,7 @@ var movieDesc = {
 }
 
 
-var element = React.createElement('div', {},
-                React.createElement(MovieTitle,{movietitle:movietitle}),
-                React.createElement(Movie, {movie:movies}),
-                React.createElement(MovieDescription, {movieDesc:movieDesc})
-              );
+var element = React.createElement(Movie, {movie:movies});
 
 
 ReactDOM.render(element, document.getElementById('react-app'));
