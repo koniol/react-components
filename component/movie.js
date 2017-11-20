@@ -1,28 +1,26 @@
 var MovieTitle = React.createClass({
     propTypes: {
-        movietitle: React.PropTypes.object.isRequired,
+        movietitle: React.PropTypes.string.isRequired,
     },
 
     render: function () {
-        return (React.createElement('h1', {}, this.props.movietitle.title));
+        return (React.createElement('h1', {}, this.props.movietitle));
     }
 
 });
-
 
 var MovieDescription = React.createClass({
     propTypes: {
-        movieDesc: React.PropTypes.object.isRequired,
+        movieDesc: React.PropTypes.string.isRequired,
     },
 
     render: function () {
-        return React.createElement('p', {}, this.props.movieDesc.dscrpt);
+        return React.createElement('p', {}, this.props.movieDesc);
     }
 
 });
 
-
-var Movie = React.createClass({
+var MovieImage = React.createClass({
     propTypes: {
         movie: React.PropTypes.object.isRequired,
     },
@@ -65,9 +63,9 @@ var movies = [
 
 var moviesRe = movies.map(movie =>{
     return React.createElement('div', {key: movie.id, className: 'movie'}, 
-                 React.createElement(MovieTitle, {movietitle: movie}),
-                 React.createElement(Movie, {movie: movie}),
-                    React.createElement(MovieDescription, {movieDesc: movie}),
+                 React.createElement(MovieTitle, {movietitle: movie.title}),
+                 React.createElement(MovieImage, {movie: movie}),
+                    React.createElement(MovieDescription, {movieDesc: movie.dscrpt}),
         );
 });
 
