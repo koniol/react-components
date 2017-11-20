@@ -29,37 +29,54 @@ var Movie = React.createClass({
 
     render: function(){
         return (React.createElement('li',{},
-                    React.createElement(MovieTitle,{movietitle: this.props.movie}),
                     React.createElement('img', {id: this.props.movie.id , 
                                        className: 'film-box',
-                                       src: this.props.movie.src}),
-                    
-                    React.createElement(MovieDescription,{movieDesc: this.props.movie})
+                                       src: this.props.movie.src})
+                   
         ));
     }
 
 });
 
 
-var movies =
+var movies = [
     {
         id: 1,
         name:'asdasd',
+        src: "./img/krp.jpeg",
+        title: "Karmazynowy przypływ",
+        dscrpt: "Nam convallis, felis sed euismod imperdiet, ante ex commodo lacus, vel sodales est felis sit amet elit. Donec mollis tortor elit, nec laoreet sapien volutpat sit amet. ",
+    },
+    {
+            id: 2,
+            name:'Władca',
+            src: "./img/wlad.jpeg",
+            title: "Władca pierścieni",
+            dscrpt: "Integer vitae arcu odio. Nunc tortor massa, fringilla et consequat et, euismod non sem. In pulvinar elit pulvinar, pharetra eros eget, consectetur lacus. Morbi viverra feugiat turpis id porta. Mauris vel ante eu sem accumsan malesuada. Sed et eros at nulla lobortis varius. Mauris porta vulputate tellus, a sollicitu",
+    },
+    {
+        id: 3,
+        name:'Cube: triller',
         src: "./img/cube.jpeg",
-        title: "BBOBOOB",
-        dscrpt: "Lorem ipsun dotor bla bla bla",
-   };
+        title: "Cube I",
+        dscrpt: "Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce tellus sem, pharetra quis pellentesque ege",
+    },
+];
 
-var movietitle = {
-    title: 'First film'
-}
+var moviesRe = movies.map(movie =>{
+    return React.createElement('div', {key: movie.id, className: 'movie'}, 
+                 React.createElement(MovieTitle, {movietitle: movie}),
+                 React.createElement(Movie, {movie: movie}),
+                    React.createElement(MovieDescription, {movieDesc: movie}),
+        );
+});
 
-var movieDesc = {
-    dscrpt: 'Bla bla bla'
-}
 
-
-var element = React.createElement(Movie, {movie:movies});
+var element =
+  React.createElement('div', {},
+    React.createElement('h1', {}, 'Moje filmy'),
+    React.createElement('ul', {}, moviesRe)
+);
 
 
 ReactDOM.render(element, document.getElementById('react-app'));
